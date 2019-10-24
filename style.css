@@ -1,0 +1,177 @@
+body {
+    font-family:'Courier';
+}
+
+.p5_canvas_container {
+    position: absolute;
+    left:0px;
+    top:64px;
+    width:512px;
+    height:512px;
+}
+
+.menu_container {
+    position: absolute;
+    left:0px;
+    top:64px;
+    width:512px;
+    height:512px;
+    background-color: #1F1F1F;
+}
+.sidebar_container {
+    position: absolute;
+    left:512px;
+    top:0px;
+    width:256px;
+    height:576px;
+    background-color: #1F1F1F;
+}
+
+.sidebar_title {
+    width:256px;
+    height:64px;
+    text-align:center;
+    color:white;
+    margin-top:10px;
+}
+
+.top_menu_bar {
+    position: absolute;
+    left:0px;
+    top:0px;
+    width:512px;
+    height:64px;
+    background-color: #1F1F1F;
+}
+
+.panel_stat_currency {
+    position: absolute;
+    left:136px;
+    top:8px;
+    width:240px;
+    height:48px;
+    background-color: #141414;
+}
+
+.align_right {
+    text-align: right;
+}
+
+.stat_paragraph {
+    color:white;
+    margin:0px;
+    padding:0px;
+    padding-top:4px;
+}
+
+.link_button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-left:5px;
+    padding-right:5px;
+    color:#DDDDDD;
+}
+
+.link_button:hover {
+    color:#AAAAAA;
+}
+
+.link_button:active {
+    color:#888888;
+}
+
+.t20 {
+    font-size:20px;
+}
+
+.t16 {
+    font-size:16px;
+}
+
+.t12 {
+    font-size:12px;
+}
+
+.stat_container {
+    padding:5px;
+}
+
+.btn_white {
+    background-color:#F1F1F1;
+    color:black;
+    border:none;
+}
+
+.btn_white:hover {
+    background-color:#E1E1E1;
+}
+
+.btn_white:active {
+    background-color:#A1A1A1;
+}
+
+.spawnbtn {
+    position:absolute;
+    left:392px;
+    top:8px;
+    width:112px;
+    height:48px;
+    font-family: 'Courier';
+}
+
+.menubtn {
+    position:absolute;
+    left:8px;
+    top:8px;
+    width:112px;
+    height:48px;
+    font-family: 'Courier';
+}
+
+canvas {
+    position: absolute;
+    left:0px;
+    top:0px;
+}
+
+.upgrade_panel {
+    color:white;
+    margin:5px;
+    border-width:1px;
+    border-style:none none solid solid;
+    border-color:white;
+}
+
+.sidebar_titletext {
+    font-size:20px;
+}
+
+.tc1 {
+    color:white;
+}
+
+.tc2 {
+    color:#DDDDDD;
+}
+
+.tc3 {
+    color:#AAAAAA;
+}
+
+.tc4 {
+    color:#888888;
+}
+
+.upgrade_container {
+    overflow-y: scroll;
+}
+
+.btn_upgrade_buy {
+    width:20%;
+    height:10%;
+    padding:0px;
+    margin:0px;
+    font-family: 'Courier';
+}

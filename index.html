@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <title>Bubbleverse</title>
+  <script language="javascript" type="text/javascript" src="game.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script language="javascript" type="text/javascript" src="libraries/notify.min.js"></script>
+  <script language="javascript" type="text/javascript" src="libraries/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="universe.js"></script>
+  <script language="javascript" type="text/javascript" src="ui.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="top_menu_bar">
+        <button class="btn_white menubtn t16" id="menubtn"><b>[WIP]</b></button>
+        <div class="panel_stat_currency">
+            <div class="stat_container">
+                <p class="align_right t16 stat_paragraph" id="stat_currency"><b>0 $</b></p>
+                <p class="align_right t12 stat_paragraph" id="stat_currencyPerSecond">Multipliers: [WIP]</p>
+            </div>
+        </div>
+        <button class="btn_white spawnbtn t16" id="spawnbtn"><b>Spawn</b></button>
+    </div>
+
+    <div id="p5_canvas_container" class="p5_canvas_container"></div>
+    <div id="menu_container" class="menu_container"></div>
+    <div id="sidebar_container" class="sidebar_container">
+        <div class="sidebar_title">
+            <p class="stat_paragraph sidebar_titletext"><b>Upgrades</b></p>
+            <p class="stat_paragraph">
+                <!--<a class="link_button">Spawner</a>-->
+                <a class="link_button">Bubble</a>
+                <!--<a class="link_button">Physics</a>-->
+            </p>
+        </div>
+        <div class="upgrade_container" id="sidebar_bubble_upgrades">
+            <!-- UPGRADE BUBBLE VALUE-->
+            <div class="upgrade_panel">
+                <p class="stat_paragraph t16"><b>Bubble Value</b> <a class="t12 tc3" id="stat_upgr_bv_level">(1)</a></p>
+                <p class="stat_paragraph t12 tc2">Bubbles start with value of <a class="tc1" stat="stat_next_bv">2</a></p>
+                <p class="stat_paragraph t12 tc2">Cost: <a class="tc1" id="stat_upgr_bv_cost">500$</a></p>
+                <p class="stat_paragraph"><button class="btn_white btn_upgrade_buy t16" id="buy_upgr_bv">Buy</button><a class="t12"></a></p>
+            </div>
+            <!-- UPGRADE MAXIMUM VALUE-->
+            <div class="upgrade_panel">
+                <p class="stat_paragraph t16"><b>Maximum Value</b> <a class="t12 tc3" id="stat_upgr_mbv_level">(1)</a></p>
+                <p class="stat_paragraph t12 tc2">Increases max. bubble value</p>
+                <p class="stat_paragraph t12 tc2">Next max. value: <a class="tc1" id="stat_next_mbv">200</a></p>
+                <p class="stat_paragraph t12 tc2">Cost: <a class="tc1" id="stat_upgr_mbv_cost">1000$</a></p>
+                <p class="stat_paragraph"><button class="btn_white btn_upgrade_buy t16" id="buy_upgr_mbv">Buy</button><a class="t12"></a></p>
+            </div> 
+            <!-- TODO: GOLDEN BUBBLE UPGRADE-->
+            <div class="upgrade_panel">
+                <p class="stat_paragraph t16"><b>Maximum Number</b> <a class="t12 tc3" id="stat_upgr_mbnr_level">(1)</a></p>
+                <p class="stat_paragraph t12 tc2">Increases max. number of bubbles</p>
+                <p class="stat_paragraph t12 tc2">Next max. number: <a class="tc1" id="stat_next_mbnr">200</a></p>
+                <p class="stat_paragraph t12 tc2">Cost: <a class="tc1" id="stat_upgr_mbnr_cost">1000$</a></p>
+                <p class="stat_paragraph"><button class="btn_white btn_upgrade_buy t16" id="buy_upgr_mbnr">Buy</button><a class="t12"></a></p>
+            </div> 
+        </div>        
+    </div>
+</body>
+</html>
