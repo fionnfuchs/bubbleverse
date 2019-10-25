@@ -51,6 +51,7 @@ function draw() {
     //     return a.score - b.score;
     // })
     drawUniverseBorder();
+    drawUinversePopulation();
 }
 
 function mouseClicked () {
@@ -203,4 +204,13 @@ function calculateAttractionRadius(size) {
 
 function calculateJoinBonus(score) {
     return score * 0.05;
+}
+
+function drawUinversePopulation() {
+    fill(250);
+    textSize(12);
+    noStroke();
+    textAlign(CENTER);
+    textFont('Courier');
+    text("Population: " + bubbles.length + "/" + MODIFIERS.bubble.maxBubbleNumber,256,15);
 }
