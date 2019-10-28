@@ -10,20 +10,20 @@ var UNIVERSE = {
 
 var UPGRDATA = {
     bubbleValue: {
-        cost: [50,200,300,400,500], // The cost of index 0 is for the upgrade to index 1
-        value: [1,2,3,4,5,6],
+        cost: [50,200,300,400,500,1500,3000,4500,7000,8500,10000,20000,30000,40000,50000], // The cost of index 0 is for the upgrade to index 1
+        value: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
     },
     maxBubbleValue: {
-        cost: [100,300,600,1000,1500], // The cost of index 0 is for the upgrade to index 1
-        value: [50,100,200,300,500,800], 
+        cost: [100,200,400,600,800,2000,4000,6000,8000,10000,20000,40000,60000,80000,100000], // The cost of index 0 is for the upgrade to index 1
+        value: [50,100,200,300,500,800,1000,1200,1400,1600,1800,2000,2200,2400,2500,2600,2700], 
     },
     maxBubbleNumber: {
-        cost: [25,100,150,200,250], // The cost of index 0 is for the upgrade to index 1
-        value: [10,12,14,16,18,20], 
+        cost: [25,100,150,200,250,1000,2000,3000,4000,5000,10000,20000,30000,40000,50000], // The cost of index 0 is for the upgrade to index 1
+        value: [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], 
     },
     autoSpawnRate: {
-        cost: [1000,2000,3000,4000,5000], // The cost of index 0 is for the upgrade to index 1
-        value: [0,100,200,300,400,500,600],
+        cost: [1000,2000,3000,4000,5000,10000,20000,30000,40000,50000], // The cost of index 0 is for the upgrade to index 1
+        value: [0,100,200,300,400,500,600,650,700,750,760,770,780,790,800],
     },
 }
 
@@ -93,6 +93,7 @@ function loadFromCookie() {
 function saveToCookie() {
     $.cookie("VALUES", JSON.stringify(VALUES));
     $.cookie("STATISTICS", JSON.stringify(STATISTICS));
+    $("#stat_currency").notify("Autosaved.", "success");
 }
 
 function calculateTempValues() { //Calculate all values except those of VALUES and MODIFIERS (they are saved in cookies)

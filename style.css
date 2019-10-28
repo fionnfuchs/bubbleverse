@@ -121,6 +121,15 @@ body {
     font-family: 'Courier';
 }
 
+.resetbtn {
+    position:absolute;
+    left:520px;
+    top:552px;
+    width:240px;
+    height:16px;
+    font-family: 'Courier';
+}
+
 .menubtn {
     position:absolute;
     left:8px;

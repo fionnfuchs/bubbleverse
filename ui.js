@@ -65,6 +65,9 @@ function initializeButtons () {
             calculateTempValues();
         }
     });
+    $('#resetbtn').click(function() {
+        clearCookieSave();
+    });
 
     // SIDEBAR
     $("#sidebar_category_bubble_btn").click(function () {
