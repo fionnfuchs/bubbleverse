@@ -9,6 +9,8 @@ var universeArea = {
 
 function preload() {
     //Load cookie save file
+    INIT();
+    loadFromCookie();
     calculateTempValues();
 }
 

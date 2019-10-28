@@ -1,5 +1,6 @@
 var UISTATE = {
     mainMenuState: 0,
+    sidebarMenuState: 0,
 }
 
 $( document ).ready(function() {
@@ -56,6 +57,34 @@ function initializeButtons () {
             calculateTempValues();
         }
     });
+    $('#buy_upgr_asr').click(function () {
+        if(VALUES.currency >= UPGRDATA.autoSpawnRate.cost[VALUES.upgradeLevel.autoSpawnRate-1]) {
+            VALUES.currency -= UPGRDATA.autoSpawnRate.cost[VALUES.upgradeLevel.autoSpawnRate-1];
+            VALUES.upgradeLevel.autoSpawnRate++;
+            $('#buy_upgr_asr').notify("Bought!", "success");
+            calculateTempValues();
+        }
+    });
+
+    // SIDEBAR
+    $("#sidebar_category_bubble_btn").click(function () {
+        UISTATE.sidebarMenuState = 0;
+        $("#sidebar_auto_upgrades").hide();
+        $("#sidebar_physics_upgrades").hide();
+        $("#sidebar_bubble_upgrades").show();
+    });
+    $("#sidebar_category_auto_btn").click(function () {
+        UISTATE.sidebarMenuState = 1;
+        $("#sidebar_auto_upgrades").show();
+        $("#sidebar_physics_upgrades").hide();
+        $("#sidebar_bubble_upgrades").hide();
+    });
+    $("#sidebar_category_physics_btn").click(function () {
+        UISTATE.sidebarMenuState = 2;
+        $("#sidebar_auto_upgrades").hide();
+        $("#sidebar_physics_upgrades").show();
+        $("#sidebar_bubble_upgrades").hide();
+    });
 }
 
 function updateUI() {
@@ -66,14 +95,17 @@ function updateUI() {
     $('#stat_upgr_bv_level').html("(" + VALUES.upgradeLevel.bubbleValue + ")");
     $('#stat_upgr_mbv_level').html("(" + VALUES.upgradeLevel.maxBubbleValue + ")");
     $('#stat_upgr_mbnr_level').html("(" + VALUES.upgradeLevel.maxBubbleNumber + ")");
+    $('#stat_upgr_asr_level').html("(" + VALUES.upgradeLevel.autoSpawnRate + ")");
 
     $('#stat_next_bv').html(UPGRDATA.bubbleValue.value[VALUES.upgradeLevel.bubbleValue]);
     $('#stat_next_mbv').html(UPGRDATA.maxBubbleValue.value[VALUES.upgradeLevel.maxBubbleValue]);
     $('#stat_next_mbnr').html(UPGRDATA.maxBubbleNumber.value[VALUES.upgradeLevel.maxBubbleNumber]);
+    $('#stat_next_asr').html(UPGRDATA.autoSpawnRate.value[VALUES.upgradeLevel.autoSpawnRate]);
 
     $('#stat_upgr_bv_cost').html(UPGRDATA.bubbleValue.cost[VALUES.upgradeLevel.bubbleValue-1] + "$");
     $('#stat_upgr_mbv_cost').html(UPGRDATA.maxBubbleValue.cost[VALUES.upgradeLevel.maxBubbleValue-1] + "$");
     $('#stat_upgr_mbnr_cost').html(UPGRDATA.maxBubbleNumber.cost[VALUES.upgradeLevel.maxBubbleNumber-1] + "$");
+    $('#stat_upgr_asr_cost').html(UPGRDATA.autoSpawnRate.cost[VALUES.upgradeLevel.autoSpawnRate-1] + "$");
 
     //$('#spawnbtn').html("<b>Spawn</b><a class='t12'>(" + (MODIFIERS.bubble.maxBubbleNumber - bubbles.length) + ")</a>");
 }
