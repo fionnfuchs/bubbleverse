@@ -29,7 +29,7 @@ var UPGRDATA = {
 
 var MODIFIERS = {
     universe: {
-        factor_size: 1.5, //Values: [1:4]
+        factor_size: 2, //Values: [1:4]
     },
     physic: {
         factor_generalSpeed: 2,
