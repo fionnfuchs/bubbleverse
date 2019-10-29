@@ -14,3 +14,18 @@ In Bubbleverse you grow bubbles in a tiny universe and collect them for cash. Wi
 - Click the spawn button to spawn new bubbles 
 - UI should be relatively self explanatory 
 
+## Roadmap 
+**Itch.io Beta** 
+- Prestige System 
+- At least 5 achievements 
+- Auto Collector 
+
+**Version 1.0** 
+- At least 20 achievements 
+- Offline progress 
+- Golden Bubbles (+ Upgrades)
+- Save file import / export
+- Achievement Rewards
+
+**Maybe someday**
+- iOS / Android version
