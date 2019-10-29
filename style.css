@@ -126,16 +126,27 @@ body {
     left:520px;
     top:552px;
     width:240px;
-    height:16px;
+    height:18px;
     font-family: 'Courier';
 }
 
-.menubtn {
+.prestigebtn {
+    position:absolute;
+    left:8px;
+    top:36px;
+    width:112px;
+    height:18px;
+    color:#ED6A5A;
+    font-family: 'Courier';
+}
+
+.achievementsbtn {
     position:absolute;
     left:8px;
     top:8px;
     width:112px;
-    height:48px;
+    height:16px;
+    color:#048A81;
     font-family: 'Courier';
 }
 
@@ -183,4 +194,13 @@ canvas {
     padding:0px;
     margin:0px;
     font-family: 'Courier';
+}
+
+.bigmenu_container {
+    padding:12px;
+    color: white;
+}
+
+.bigmenu_header {
+    
 }

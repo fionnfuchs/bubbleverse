@@ -58,6 +58,7 @@ var AUTOSPAWNER = {
 
 var VALUES;
 var STATISTICS;
+var ACHIEVEMENTS;
 
 function INIT() { // This is called to initialize values when no save file is there or when the save file is cleared
     VALUES = {
@@ -79,12 +80,28 @@ function INIT() { // This is called to initialize values when no save file is th
             collectedValue: 0,
         }
     };
+    ACHIEVEMENTS = {
+        //Collector achievements
+        beginnerCollector: false,
+        advancedCollector: false,
+        professionalCollector: false,
+        masterCollector: false,
+        godCollector: false,
+        //Value achievements
+        tinyValue: false,
+        smallValue: false,
+        mediumValue: false,
+        bigValue: false,
+        hugeValue: false,
+        incredibleValue: false,
+    };
 }
 
 function loadFromCookie() {
     if($.cookie("VALUES") != null) {   
         VALUES = JSON.parse($.cookie("VALUES"));
         STATISTICS = JSON.parse($.cookie("STATISTICS"));
+        ACHIEVEMENTS = JSON.parse($.cookie("STATISTICS"));
     }
     
     setInterval(saveToCookie, 10000);
@@ -93,6 +110,7 @@ function loadFromCookie() {
 function saveToCookie() {
     $.cookie("VALUES", JSON.stringify(VALUES));
     $.cookie("STATISTICS", JSON.stringify(STATISTICS));
+    $.cookie("ACHIEVEMENTS", JSON.stringify(ACHIEVEMENTS));
     $("#stat_currency").notify("Autosaved.", "success");
 }
 
@@ -101,6 +119,17 @@ function calculateTempValues() { //Calculate all values except those of VALUES a
     MODIFIERS.bubble.maxValue = UPGRDATA.maxBubbleValue.value[VALUES.upgradeLevel.maxBubbleValue-1];
     MODIFIERS.bubble.maxBubbleNumber = UPGRDATA.maxBubbleNumber.value[VALUES.upgradeLevel.maxBubbleNumber-1];
     MODIFIERS.autospawner.time = 1000 - UPGRDATA.autoSpawnRate.value[VALUES.upgradeLevel.autoSpawnRate-1];
+}
+
+function updateAchievements() {
+    if(STATISTICS.total.collectedBubbles >= 50 && !ACHIEVEMENTS.beginnerCollector) {
+        ACHIEVEMENTS.beginnerCollector = true;
+        $("#achievementsbtn").notify("Achievement Unlocked!", "info");
+    }
+    if(STATISTICS.total.collectedBubbles >= 200 && !ACHIEVEMENTS.advancedCollector) {
+        ACHIEVEMENTS.advancedCollector = true;
+        $("#achievementsbtn").notify("Achievement Unlocked!", "info");
+    }
 }
 
 //

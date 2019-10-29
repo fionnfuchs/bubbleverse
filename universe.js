@@ -36,6 +36,7 @@ function setup() {
 
 function draw() {
     updateDeltaTimes();
+    updateAchievements();
 
     clear();
     background(20);

@@ -16,7 +16,8 @@
 
 <body>
     <div class="top_menu_bar">
-        <button class="btn_white menubtn t16" id="menubtn"><b>[WIP]</b></button>
+        <button class="btn_white achievementsbtn t12" id="achievementsbtn"><b>Achievements</b></button>
+        <button class="btn_white prestigebtn t12" id="prestigebtn"><b>Prestige</b></button>
         <div class="panel_stat_currency">
             <div class="stat_container">
                 <p class="align_right t16 stat_paragraph" id="stat_currency"><b>0 $</b></p>
@@ -27,7 +28,17 @@
     </div>
 
     <div id="p5_canvas_container" class="p5_canvas_container"></div>
-    <div id="menu_container" class="menu_container"></div>
+    <div id="menu_container" class="menu_container" style="display:none;">
+        <div class="bigmenu_container" id="menu_achievements">
+            <p class="bigmenu_header t16"><b>Achievements</b></p>
+            <div class="achievement_container t12" id="ach_beginnerCollector" style="display:none;"><b>Beginner Collector</b> - Collect 50 bubbles</div>
+            <div class="achievement_container t12" id="ach_advancedCollector" style="display:none;"><b>Advanced Collector</b> - Collect 200 bubbles</div>
+            <div class="achievement_container t12"><i>Play the game to unlock more!</i></div>
+        </div>
+        <div class="bigmenu_container" id="menu_prestige">
+            <p class="bigmenu_header t16"><b>Prestige</b></p>
+        </div>
+    </div>
     <div id="sidebar_container" class="sidebar_container">
         <div class="sidebar_title">
             <p class="stat_paragraph sidebar_titletext"><b>Upgrades</b></p>

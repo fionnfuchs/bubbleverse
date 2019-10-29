@@ -5,7 +5,7 @@ var UISTATE = {
 
 $( document ).ready(function() {
     $.notify.defaults( {
-        autoHideDelay: 500,
+        autoHideDelay: 1000,
     });
     hideThings();
     initializeButtons();
@@ -22,14 +22,33 @@ function initializeButtons () {
     $('#spawnbtn').click(function () {
         spawnRandomBubble();
     });
-    $('#menubtn').click(function () {
-        if(UISTATE.mainMenuState == 0) {
+    $('#achievementsbtn').click(function () {
+        if(UISTATE.mainMenuState != 1) {
+            $('#p5_canvas_container').hide();    
+            $('#menu_prestige').hide(); 
+            $('#menu_container').show();
+            $('#menu_achievements').show();
+            UISTATE.mainMenuState = 1;   
+        } else {
+            $('#p5_canvas_container').show();  
+            $('#menu_prestige').hide();  
+            $('#menu_container').hide(); 
+            $('#menu_achievements').hide();
+            UISTATE.mainMenuState = 0;   
+        }
+    });
+    $('#prestigebtn').click(function () {
+        if(UISTATE.mainMenuState != 2) {
             $('#p5_canvas_container').hide();    
             $('#menu_container').show(); 
-            UISTATE.mainMenuState = 1;   
+            $('#menu_prestige').show(); 
+            $('#menu_achievements').hide(); 
+            UISTATE.mainMenuState = 2;   
         } else {
             $('#p5_canvas_container').show();    
             $('#menu_container').hide(); 
+            $('#menu_prestige').hide(); 
+            $('#menu_achievements').hide(); 
             UISTATE.mainMenuState = 0;   
         }
     });
@@ -111,4 +130,6 @@ function updateUI() {
     $('#stat_upgr_asr_cost').html(UPGRDATA.autoSpawnRate.cost[VALUES.upgradeLevel.autoSpawnRate-1] + "$");
 
     //$('#spawnbtn').html("<b>Spawn</b><a class='t12'>(" + (MODIFIERS.bubble.maxBubbleNumber - bubbles.length) + ")</a>");
+    if(ACHIEVEMENTS.beginnerCollector)$("#ach_beginnerCollector").show();
+    if(ACHIEVEMENTS.advancedCollector)$("#ach_advancedCollector").show();
 }
