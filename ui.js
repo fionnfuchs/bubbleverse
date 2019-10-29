@@ -86,6 +86,7 @@ function initializeButtons () {
     });
     $('#resetbtn').click(function() {
         clearCookieSave();
+        location.reload();
     });
 
     // SIDEBAR
