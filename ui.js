@@ -112,7 +112,7 @@ function initializeButtons () {
 
 function updateUI() {
     $('#stat_currency').html("<b>" + VALUES.currency + " $</b>");
-    $('#stat_currencyPerSecond').html("Multipliers: [WIP]");
+    $('#stat_multiplier').html("Multiplier: <a style='color:#ED6A5A;'>1x</a>");
 
     // UPGRADE STATS
     $('#stat_upgr_bv_level').html("(" + VALUES.upgradeLevel.bubbleValue + ")");

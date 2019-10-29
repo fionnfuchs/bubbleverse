@@ -32,9 +32,9 @@ var MODIFIERS = {
         factor_size: 2, //Values: [1:4]
     },
     physic: {
-        factor_generalSpeed: 2,
+        factor_generalSpeed: 1,
         factor_attractionRadius: 1,
-        base_attractionRadius: 100,
+        base_attractionRadius: 110,
     },
     bubble: {
         startingValue: UPGRDATA.bubbleValue.value[0],

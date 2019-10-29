@@ -53,6 +53,7 @@ body {
     background-color: #141414;
 }
 
+
 .align_right {
     text-align: right;
 }
@@ -146,7 +147,6 @@ body {
     top:8px;
     width:112px;
     height:16px;
-    color:#048A81;
     font-family: 'Courier';
 }
 
@@ -202,5 +202,9 @@ canvas {
 }
 
 .bigmenu_header {
-    
+
+}
+
+.t_green {
+    color:#048A81;
 }
