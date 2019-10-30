@@ -31,7 +31,15 @@ function setup() {
     canvas.parent("p5_canvas_container");
     spawnRandomBubble();
 
+    setInterval(asyncUpdate, 33);
+
     //setInterval(spawnRandomBubble, 1000);
+}
+
+function asyncUpdate() {
+    for(b of bubbles) {
+        updateBubble(b);
+    }
 }
 
 function draw() {
@@ -40,16 +48,16 @@ function draw() {
 
     clear();
     background(20);
-
-    for(b of bubbles) {
-        drawAttractionRadiusStroke(b);
+    if(bubbles.length > 0) {
+        for(b of bubbles) {
+            drawAttractionRadiusStroke(b);
+        }
+    
+        for(b of bubbles) {
+            drawBubble(b);
+        }
     }
-    for(b of bubbles) {
-        updateBubble(b);
-    }
-    for(b of bubbles) {
-        drawBubble(b);
-    }
+    
     // bubbles.sort(function(a,b) { // If graphics settings?
     //     return a.score - b.score;
     // })
@@ -71,7 +79,7 @@ function mouseClicked () {
             STATISTICS.total.collectedValue += calculateBubbleValue(b.score);
 
             VALUES.currency += calculateBubbleValue(b.score);
-            console.log(VALUES.currency);
+            //console.log(VALUES.currency);
         }
     }
 }
@@ -79,6 +87,17 @@ function mouseClicked () {
 function spawnRandomBubble() {
     if(bubbles.length < MODIFIERS.bubble.maxBubbleNumber) {
         addBubble(random(universeArea.w), random(universeArea.h), MODIFIERS.bubble.startingValue);
+    }
+}
+
+function collectRandomBubble() {
+    if(bubbles.length >= 1) {
+        var randomIndex = Math.round(random(bubbles.length-1));
+        if(randomIndex<0)randomIndex=0;
+        let b = bubbles[randomIndex];
+        bubbles.splice(randomIndex,1);
+        STATISTICS.total.collectedValue += calculateBubbleValue(b.score);
+        VALUES.currency += calculateBubbleValue(b.score);
     }
 }
 
@@ -175,6 +194,7 @@ function drawUniverseBorder() {
     push();
     strokeWeight(3);
     stroke(255);
+    fill(0,0,0,0);
     rect(universeArea.x,universeArea.y,universeArea.w,universeArea.h);
     noStroke();
     fill(15);

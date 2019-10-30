@@ -92,9 +92,26 @@ function initializeButtons () {
             calculateTempValues();
         }
     });
+    $('#buy_upgr_acr').click(function () {
+        if(VALUES.currency >= UPGRDATA.autoCollectorRate.cost[VALUES.upgradeLevel.autoCollectorRate-1]) {
+            VALUES.currency -= UPGRDATA.autoCollectorRate.cost[VALUES.upgradeLevel.autoCollectorRate-1];
+            VALUES.upgradeLevel.autoCollectorRate++;
+            $('#buy_upgr_acr').notify("Bought!", "success");
+            calculateTempValues();
+        }
+    });
     $('#resetbtn').click(function() {
         clearCookieSave();
         location.reload();
+    });
+
+    // AUTO ON OFF BUTTONS
+    $("#upgr_acr_onoff").click(function() {
+        MODIFIERS.autocollector.enabled = !MODIFIERS.autocollector.enabled;
+    });
+
+    $("#upgr_asr_onoff").click(function() {
+        MODIFIERS.autospawner.enabled = !MODIFIERS.autospawner.enabled;
     });
 
     // SIDEBAR
@@ -137,18 +154,21 @@ function updateUI() {
     $('#stat_upgr_mbnr_level').html("(" + VALUES.upgradeLevel.maxBubbleNumber + ")");
     $('#stat_upgr_asr_level').html("(" + VALUES.upgradeLevel.autoSpawnRate + ")");
     $('#stat_upgr_ar_level').html("(" + VALUES.upgradeLevel.attractionRadius + ")");
+    $('#stat_upgr_acr_level').html("(" + VALUES.upgradeLevel.autoCollectorRate + ")");
 
     $('#stat_next_bv').html(Math.round(UPGRDATA.bubbleValue.value[VALUES.upgradeLevel.bubbleValue]*VALUES.globalMultiplier));
     $('#stat_next_mbv').html(UPGRDATA.maxBubbleValue.value[VALUES.upgradeLevel.maxBubbleValue]);
     $('#stat_next_mbnr').html(UPGRDATA.maxBubbleNumber.value[VALUES.upgradeLevel.maxBubbleNumber]);
     $('#stat_next_asr').html(UPGRDATA.autoSpawnRate.value[VALUES.upgradeLevel.autoSpawnRate]);
     $('#stat_next_ar').html(UPGRDATA.attractionRadius.value[VALUES.upgradeLevel.attractionRadius]);
+    $('#stat_next_acr').html(UPGRDATA.autoCollectorRate.value[VALUES.upgradeLevel.autoCollectorRate]);
 
     $('#stat_upgr_bv_cost').html(UPGRDATA.bubbleValue.cost[VALUES.upgradeLevel.bubbleValue-1] + "$");
     $('#stat_upgr_mbv_cost').html(UPGRDATA.maxBubbleValue.cost[VALUES.upgradeLevel.maxBubbleValue-1] + "$");
     $('#stat_upgr_mbnr_cost').html(UPGRDATA.maxBubbleNumber.cost[VALUES.upgradeLevel.maxBubbleNumber-1] + "$");
     $('#stat_upgr_asr_cost').html(UPGRDATA.autoSpawnRate.cost[VALUES.upgradeLevel.autoSpawnRate-1] + "$");
     $('#stat_upgr_ar_cost').html(UPGRDATA.attractionRadius.cost[VALUES.upgradeLevel.attractionRadius-1] + "$");
+    $('#stat_upgr_acr_cost').html(UPGRDATA.autoCollectorRate.cost[VALUES.upgradeLevel.autoCollectorRate-1] + "$");
 
     //$('#spawnbtn').html("<b>Spawn</b><a class='t12'>(" + (MODIFIERS.bubble.maxBubbleNumber - bubbles.length) + ")</a>");
     if(ACHIEVEMENTS.beginnerCollector)$("#ach_beginnerCollector").show();
@@ -157,5 +177,33 @@ function updateUI() {
     if(VALUES.prestigeLevel > 0) {
         $("#prestige_controls").hide();
         $("#sidebar_category_physics_btn").show();
+    }
+
+    if(VALUES.upgradeLevel.autoSpawnRate > 1) {
+        $("#upgr_spawn_text").html("Bubbles spawn faster");
+        $("#upgr_asr_onoff").show();
+    } else {
+        $("#upgr_spawn_text").html("Spawn bubbles automatically");
+        $("#upgr_asr_onoff").hide();
+    }
+
+    if(VALUES.upgradeLevel.autoCollectorRate > 1) {
+        $("#upgr_collect_text").html("Bubbles are collected faster");
+        $("#upgr_acr_onoff").show();
+    } else {
+        $("#upgr_collect_text").html("Collect bubbles automatically");
+        $("#upgr_acr_onoff").hide();
+    }
+
+    if(MODIFIERS.autocollector.enabled) {
+        $("#upgr_acr_onoff").html("ON");
+    } else {
+        $("#upgr_acr_onoff").html("OFF");
+    }
+
+    if(MODIFIERS.autospawner.enabled) {
+        $("#upgr_asr_onoff").html("ON");
+    } else {
+        $("#upgr_asr_onoff").html("OFF");
     }
 }
