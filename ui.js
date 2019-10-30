@@ -119,7 +119,7 @@ function initializeButtons () {
 
     // PRESTIGE
     $("#btn_prestige_buy").click(function() {
-        if(VALUES.currency > 10) {
+        if(VALUES.currency > 20000) {
             prestigeReset();
             VALUES.globalMultiplier = 1.5;
             VALUES.prestigeLevel = 1;
