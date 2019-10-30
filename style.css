@@ -94,8 +94,16 @@ body {
     font-size:16px;
 }
 
+.t14 {
+    font-size:14px;
+}
+
 .t12 {
     font-size:12px;
+}
+
+.t10 {
+    font-size:10px;
 }
 
 .stat_container {
@@ -199,6 +207,14 @@ canvas {
     font-family: 'Courier';
 }
 
+.btn_prestige_buy {
+    width:40%;
+    height:12%;
+    padding:0px;
+    margin:0px;
+    font-family: 'Courier';
+}
+
 .bigmenu_container {
     padding:12px;
     color: white;
@@ -210,4 +226,16 @@ canvas {
 
 .t_green {
     color:#048A81;
+}
+
+.t_orange {
+    color:#ED6A5A;
+}
+
+.prestige_controls {
+    color:white;
+    margin:5px;
+    border-width:1px;
+    border-style:none none solid solid;
+    border-color:white;
 }

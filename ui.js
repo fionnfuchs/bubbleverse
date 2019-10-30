@@ -108,11 +108,20 @@ function initializeButtons () {
         $("#sidebar_physics_upgrades").show();
         $("#sidebar_bubble_upgrades").hide();
     });
+
+    // PRESTIGE
+    $("#btn_prestige_buy").click(function() {
+        if(VALUES.currency > 50000) {
+            prestigeReset();
+            VALUES.globalMultiplier = 1.1;
+            VALUES.prestigeLevel = 1;
+        }
+    });
 }
 
 function updateUI() {
     $('#stat_currency').html("<b>" + VALUES.currency + " $</b>");
-    $('#stat_multiplier').html("Multiplier: <a style='color:#ED6A5A;'>1x</a>");
+    $('#stat_multiplier').html("Multiplier: <a style='color:#ED6A5A;'>" + Math.round(VALUES.globalMultiplier * 100) / 100 + "x</a>");
 
     // UPGRADE STATS
     $('#stat_upgr_bv_level').html("(" + VALUES.upgradeLevel.bubbleValue + ")");
@@ -133,4 +142,6 @@ function updateUI() {
     //$('#spawnbtn').html("<b>Spawn</b><a class='t12'>(" + (MODIFIERS.bubble.maxBubbleNumber - bubbles.length) + ")</a>");
     if(ACHIEVEMENTS.beginnerCollector)$("#ach_beginnerCollector").show();
     if(ACHIEVEMENTS.advancedCollector)$("#ach_advancedCollector").show();
+
+    if(VALUES.prestigeLevel > 0)$("#prestige_controls").hide();
 }

@@ -72,7 +72,9 @@ function INIT() { // This is called to initialize values when no save file is th
             maxBubbleValue: 1,
             maxBubbleNumber: 1,
             autoSpawnRate: 1,
-        }
+        },
+        prestigeLevel: 0,
+        globalMultiplier: 1.0,
     };
     STATISTICS = {
         total: {
@@ -101,7 +103,7 @@ function loadFromCookie() {
     if($.cookie("VALUES") != null) {   
         VALUES = JSON.parse($.cookie("VALUES"));
         STATISTICS = JSON.parse($.cookie("STATISTICS"));
-        ACHIEVEMENTS = JSON.parse($.cookie("STATISTICS"));
+        ACHIEVEMENTS = JSON.parse($.cookie("ACHIEVEMENTS"));
     }
     
     setInterval(saveToCookie, 10000);
@@ -149,6 +151,14 @@ function updateDeltaTimes() {
 function clearCookieSave() {
     $.cookie("VALUES", null);
     $.cookie("STATISTICS", null);
+    $.cookie("ACHIEVEMENTS", null);
+    INIT();
+    calculateTempValues();
+    saveToCookie();
+}
+
+function prestigeReset() {
+    $.cookie("VALUES", null);
     INIT();
     calculateTempValues();
     saveToCookie();
