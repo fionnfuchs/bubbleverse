@@ -39,7 +39,7 @@
             <p class="bigmenu_header t16"><b>Prestige</b></p>
             <div class="prestige_controls" id="prestige_controls">
                 <div class="stat_paragraph t14" id="stat_next_prestigetier">Prestige Tier 1</div>
-                <div class="stat_paragraph t12">You need <a class="t_green">50000$</a> to buy this. You will lose all progress except for achievements but your global multiplier will be increased. Additionally with this tier physics upgrades will be unlocked.</div>
+                <div class="stat_paragraph t12">You need <a class="t_green">20000$</a> to buy this. You will lose all progress except for achievements but your global multiplier will be increased. Additionally with this tier physics upgrades will be unlocked.</div>
                 <p class="stat_paragraph"><button class="btn_white btn_prestige_buy t16 t_orange" id="btn_prestige_buy">Buy Prestige</button><a class="t12"></a></p>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <p class="stat_paragraph">
                 <a class="link_button" id="sidebar_category_bubble_btn">Bubble</a>
                 <a class="link_button" id="sidebar_category_auto_btn">Auto</a>
-                <!--<a class="link_button" id="sidebar_category_physics_btn">Physics</a>-->
+                <a class="link_button" id="sidebar_category_physics_btn" style="display:none;">Physics</a>
             </p>
         </div>
         <div class="upgrade_container" id="sidebar_auto_upgrades" style="display:none;">
@@ -62,13 +62,18 @@
             </div>
         </div>
         <div class="upgrade_container" id="sidebar_physics_upgrades" style="display:none;">
-            ABC
+            <div class="upgrade_panel">
+                <p class="stat_paragraph t16"><b>Atraction Radius</b> <a class="t12 tc3" id="stat_upgr_ar_level">(1)</a></p>
+                <p class="stat_paragraph t12 tc2">The attraction radius is increased by <a class="tc1" id="stat_next_ar">2</a></p>
+                <p class="stat_paragraph t12 tc2">Cost: <a class="tc1" id="stat_upgr_ar_cost">500$</a></p>
+                <p class="stat_paragraph"><button class="btn_white btn_upgrade_buy t16" id="buy_upgr_ar">Buy</button><a class="t12"></a></p>
+            </div>
         </div>
         <div class="upgrade_container" id="sidebar_bubble_upgrades">
             <!-- UPGRADE BUBBLE VALUE-->
             <div class="upgrade_panel">
                 <p class="stat_paragraph t16"><b>Bubble Value</b> <a class="t12 tc3" id="stat_upgr_bv_level">(1)</a></p>
-                <p class="stat_paragraph t12 tc2">Bubbles start with value of <a class="tc1" stat="stat_next_bv">2</a></p>
+                <p class="stat_paragraph t12 tc2">Bubbles start with value of <a class="tc1" id="stat_next_bv">2</a></p>
                 <p class="stat_paragraph t12 tc2">Cost: <a class="tc1" id="stat_upgr_bv_cost">500$</a></p>
                 <p class="stat_paragraph"><button class="btn_white btn_upgrade_buy t16" id="buy_upgr_bv">Buy</button><a class="t12"></a></p>
             </div>

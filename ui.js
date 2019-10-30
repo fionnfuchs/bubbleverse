@@ -84,6 +84,14 @@ function initializeButtons () {
             calculateTempValues();
         }
     });
+    $('#buy_upgr_ar').click(function () {
+        if(VALUES.currency >= UPGRDATA.attractionRadius.cost[VALUES.upgradeLevel.attractionRadius-1]) {
+            VALUES.currency -= UPGRDATA.attractionRadius.cost[VALUES.upgradeLevel.attractionRadius-1];
+            VALUES.upgradeLevel.attractionRadius++;
+            $('#buy_upgr_ar').notify("Bought!", "success");
+            calculateTempValues();
+        }
+    });
     $('#resetbtn').click(function() {
         clearCookieSave();
         location.reload();
@@ -111,9 +119,9 @@ function initializeButtons () {
 
     // PRESTIGE
     $("#btn_prestige_buy").click(function() {
-        if(VALUES.currency > 50000) {
+        if(VALUES.currency > 10) {
             prestigeReset();
-            VALUES.globalMultiplier = 1.1;
+            VALUES.globalMultiplier = 1.5;
             VALUES.prestigeLevel = 1;
         }
     });
@@ -128,20 +136,26 @@ function updateUI() {
     $('#stat_upgr_mbv_level').html("(" + VALUES.upgradeLevel.maxBubbleValue + ")");
     $('#stat_upgr_mbnr_level').html("(" + VALUES.upgradeLevel.maxBubbleNumber + ")");
     $('#stat_upgr_asr_level').html("(" + VALUES.upgradeLevel.autoSpawnRate + ")");
+    $('#stat_upgr_ar_level').html("(" + VALUES.upgradeLevel.attractionRadius + ")");
 
-    $('#stat_next_bv').html(UPGRDATA.bubbleValue.value[VALUES.upgradeLevel.bubbleValue]);
+    $('#stat_next_bv').html(Math.round(UPGRDATA.bubbleValue.value[VALUES.upgradeLevel.bubbleValue]*VALUES.globalMultiplier));
     $('#stat_next_mbv').html(UPGRDATA.maxBubbleValue.value[VALUES.upgradeLevel.maxBubbleValue]);
     $('#stat_next_mbnr').html(UPGRDATA.maxBubbleNumber.value[VALUES.upgradeLevel.maxBubbleNumber]);
     $('#stat_next_asr').html(UPGRDATA.autoSpawnRate.value[VALUES.upgradeLevel.autoSpawnRate]);
+    $('#stat_next_ar').html(UPGRDATA.attractionRadius.value[VALUES.upgradeLevel.attractionRadius]);
 
     $('#stat_upgr_bv_cost').html(UPGRDATA.bubbleValue.cost[VALUES.upgradeLevel.bubbleValue-1] + "$");
     $('#stat_upgr_mbv_cost').html(UPGRDATA.maxBubbleValue.cost[VALUES.upgradeLevel.maxBubbleValue-1] + "$");
     $('#stat_upgr_mbnr_cost').html(UPGRDATA.maxBubbleNumber.cost[VALUES.upgradeLevel.maxBubbleNumber-1] + "$");
     $('#stat_upgr_asr_cost').html(UPGRDATA.autoSpawnRate.cost[VALUES.upgradeLevel.autoSpawnRate-1] + "$");
+    $('#stat_upgr_ar_cost').html(UPGRDATA.attractionRadius.cost[VALUES.upgradeLevel.attractionRadius-1] + "$");
 
     //$('#spawnbtn').html("<b>Spawn</b><a class='t12'>(" + (MODIFIERS.bubble.maxBubbleNumber - bubbles.length) + ")</a>");
     if(ACHIEVEMENTS.beginnerCollector)$("#ach_beginnerCollector").show();
     if(ACHIEVEMENTS.advancedCollector)$("#ach_advancedCollector").show();
 
-    if(VALUES.prestigeLevel > 0)$("#prestige_controls").hide();
+    if(VALUES.prestigeLevel > 0) {
+        $("#prestige_controls").hide();
+        $("#sidebar_category_physics_btn").show();
+    }
 }

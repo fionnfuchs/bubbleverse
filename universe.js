@@ -194,7 +194,7 @@ function calculateBubbleSize(s) {
 }
 
 function calculateBubbleValue(score) {
-    let value = score;
+    let value = score*VALUES.globalMultiplier;
     if(value > MODIFIERS.bubble.maxValue) {
         value = MODIFIERS.bubble.maxValue;
     }
@@ -202,7 +202,7 @@ function calculateBubbleValue(score) {
 }
 
 function calculateAttractionRadius(size) {
-    return (MODIFIERS.physic.base_attractionRadius+size*2)*MODIFIERS.physic.factor_attractionRadius;
+    return (MODIFIERS.physic.base_attractionRadius+size+UPGRDATA.attractionRadius.value[VALUES.upgradeLevel.attractionRadius-1])*MODIFIERS.physic.factor_attractionRadius;
 }
 
 function calculateJoinBonus(score) {

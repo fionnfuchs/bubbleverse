@@ -25,6 +25,10 @@ var UPGRDATA = {
         cost: [1000,2000,3000,4000,5000,10000,20000,30000,40000,50000], // The cost of index 0 is for the upgrade to index 1
         value: [0,100,200,300,400,500,600,650,700,750,760,770,780,790,800],
     },
+    attractionRadius: {
+        cost: [2000,4000,8000,12000,16000,20000,24000,28000,32000,64000], // The cost of index 0 is for the upgrade to index 1
+        value: [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70],
+    }
 }
 
 var MODIFIERS = {
@@ -34,7 +38,7 @@ var MODIFIERS = {
     physic: {
         factor_generalSpeed: 1,
         factor_attractionRadius: 1,
-        base_attractionRadius: 110,
+        base_attractionRadius: 120,
     },
     bubble: {
         startingValue: UPGRDATA.bubbleValue.value[0],
@@ -72,6 +76,7 @@ function INIT() { // This is called to initialize values when no save file is th
             maxBubbleValue: 1,
             maxBubbleNumber: 1,
             autoSpawnRate: 1,
+            attractionRadius: 1,
         },
         prestigeLevel: 0,
         globalMultiplier: 1.0,
