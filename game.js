@@ -117,9 +117,9 @@ function INIT() { // This is called to initialize values when no save file is th
 function loadFromCookie() {
     INIT();
     if($.cookie("VALUES") != null) {   
-        VALUES = JSON.parse($.cookie("VALUES"));
-        STATISTICS = JSON.parse($.cookie("STATISTICS"));
-        ACHIEVEMENTS = JSON.parse($.cookie("ACHIEVEMENTS"));
+        VALUES = {...VALUES, ...JSON.parse($.cookie("VALUES"))};
+        STATISTICS = {...STATISTICS, ...JSON.parse($.cookie("STATISTICS"))};
+        ACHIEVEMENTS = {...ACHIEVEMENTS, ...JSON.parse($.cookie("ACHIEVEMENTS"))};
     }
     
     setInterval(saveToCookie, 10000);
