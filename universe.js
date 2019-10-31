@@ -63,6 +63,7 @@ function draw() {
     // })
     drawUniverseBorder();
     drawUinversePopulation();
+    drawVersionText();
 }
 
 function mouseClicked () {
@@ -236,4 +237,13 @@ function drawUinversePopulation() {
     textAlign(CENTER);
     textFont('Courier');
     text("Population: " + bubbles.length + "/" + MODIFIERS.bubble.maxBubbleNumber,256,15);
+}
+
+function drawVersionText() {
+    fill(250);
+    textSize(12);
+    noStroke();
+    textAlign(LEFT);
+    textFont('Courier');
+    text("bubbleverse v" + GENERAL.version,0,500);
 }

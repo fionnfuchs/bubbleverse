@@ -2,11 +2,15 @@
 //Game Values
 var SETTINGS = {
     webgl: false,
-}
+};
+
+var GENERAL = {
+    version: "0.01"
+};
 
 var UNIVERSE = {
     size: 512,
-}
+};
 
 var UPGRDATA = {
     bubbleValue: {
@@ -33,7 +37,7 @@ var UPGRDATA = {
         cost: [2000,4000,8000,12000,16000,20000,24000,28000,32000,64000], // The cost of index 0 is for the upgrade to index 1
         value: [0,100,200,300,400,500,600,650,700,750,760,770,780,790,800],
     }
-}
+};
 
 var MODIFIERS = {
     universe: {
@@ -57,15 +61,15 @@ var MODIFIERS = {
         enabled: false,
         time: 2000,
     }
-}
+};
 
 var AUTOSPAWNER = {
     timer: 0,
-}
+};
 
 var AUTOCOLLECTOR = {
     timer: 0,
-}
+};
 
 // SAVED VALUES
 
