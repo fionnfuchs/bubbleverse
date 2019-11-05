@@ -207,7 +207,7 @@ function drawUniverseBorder() {
 }
 
 function calculateBubbleSize(s) {
-    let size = Math.log(0.01*s+1)*(512/4*MODIFIERS.universe.factor_size/4);
+    let size = Math.log(0.03*s+1)*(512/4*MODIFIERS.universe.factor_size/4);
     if(size > (512/4*MODIFIERS.universe.factor_size/4)) {
         size = 512/4*MODIFIERS.universe.factor_size/4;
     }

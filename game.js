@@ -15,7 +15,7 @@ var UNIVERSE = {
 var UPGRDATA = {
     bubbleValue: {
         cost: function(level) {
-            return 50 * Math.pow(3, level-1);
+            return 50 * Math.pow(3, level-1) - 25;
         },
         value: function(level) {
             return level;
@@ -70,7 +70,7 @@ var MODIFIERS = {
     physic: {
         factor_generalSpeed: 1.5,
         factor_attractionRadius: 1,
-        base_attractionRadius: 120,
+        base_attractionRadius: 130,
     },
     bubble: {
         startingValue: UPGRDATA.bubbleValue.value(1),
