@@ -223,7 +223,7 @@ function calculateBubbleValue(score) {
 }
 
 function calculateAttractionRadius(size) {
-    return (MODIFIERS.physic.base_attractionRadius+size+UPGRDATA.attractionRadius.value[VALUES.upgradeLevel.attractionRadius-1])*MODIFIERS.physic.factor_attractionRadius;
+    return (MODIFIERS.physic.base_attractionRadius+size+UPGRDATA.attractionRadius.value(VALUES.upgradeLevel.attractionRadius))*MODIFIERS.physic.factor_attractionRadius;
 }
 
 function calculateJoinBonus(score) {

@@ -14,28 +14,52 @@ var UNIVERSE = {
 
 var UPGRDATA = {
     bubbleValue: {
-        cost: [50,200,300,400,500,1500,3000,4500,7000,8500,10000,20000,30000,40000,50000], // The cost of index 0 is for the upgrade to index 1
-        value: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
+        cost: function(level) {
+            return 25 * Math.pow(3, level);
+        },
+        value: function(level) {
+            return level;
+        }
     },
     maxBubbleValue: {
-        cost: [100,200,400,600,800,2000,4000,6000,8000,10000,20000,40000,60000,80000,100000], // The cost of index 0 is for the upgrade to index 1
-        value: [50,100,200,300,500,800,1000,1200,1400,1600,1800,2000,2200,2400,2500,2600,2700], 
+        cost: function(level) {
+            return 50 * Math.pow(2, level);
+        },
+        value: function(level) {
+            return level * level * 50;
+        }
     },
     maxBubbleNumber: {
-        cost: [25,100,150,200,250,1000,2000,3000,4000,5000,10000,20000,30000,40000,50000], // The cost of index 0 is for the upgrade to index 1
-        value: [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], 
+        cost: function(level) {
+            return 25 * Math.pow(2, level);
+        },
+        value: function(level) {
+            return 10 + level;
+        },
     },
     autoSpawnRate: {
-        cost: [1000,2000,3000,4000,5000,10000,20000,30000,40000,50000], // The cost of index 0 is for the upgrade to index 1
-        value: [0,100,200,300,400,500,600,650,700,750,760,770,780,790,800],
+        cost: function(level) {
+            return 500 * Math.pow(2, level);
+        },
+        value: function(level) {
+            return level * (100/level);
+        }
     },
     attractionRadius: {
-        cost: [2000,4000,8000,12000,16000,20000,24000,28000,32000,64000], // The cost of index 0 is for the upgrade to index 1
-        value: [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70],
+        cost: function(level) {
+            return 250 * Math.pow(2, level);
+        },
+        value: function(level) {
+            return 5 + level*2;
+        }
     },
     autoCollectorRate: {
-        cost: [2000,4000,8000,12000,16000,20000,24000,28000,32000,64000], // The cost of index 0 is for the upgrade to index 1
-        value: [0,100,200,300,400,500,600,650,700,750,760,770,780,790,800],
+        cost: function(level) {
+            return 1000 * Math.pow(2, level);
+        },
+        value: function(level) {
+            return level * (100/level);
+        }
     }
 };
 
@@ -44,14 +68,14 @@ var MODIFIERS = {
         factor_size: 2, //Values: [1:4]
     },
     physic: {
-        factor_generalSpeed: 1,
+        factor_generalSpeed: 1.5,
         factor_attractionRadius: 1,
         base_attractionRadius: 120,
     },
     bubble: {
-        startingValue: UPGRDATA.bubbleValue.value[0],
-        maxValue: UPGRDATA.maxBubbleValue.value[0],
-        maxBubbleNumber: UPGRDATA.maxBubbleNumber.value[0],
+        startingValue: UPGRDATA.bubbleValue.value(1),
+        maxValue: UPGRDATA.maxBubbleValue.value(1),
+        maxBubbleNumber: UPGRDATA.maxBubbleNumber.value(1),
     },
     autospawner: {
         enabled: false,
@@ -137,11 +161,11 @@ function saveToCookie() {
 }
 
 function calculateTempValues() { //Calculate all values except those of VALUES and MODIFIERS (they are saved in cookies)
-    MODIFIERS.bubble.startingValue = UPGRDATA.bubbleValue.value[VALUES.upgradeLevel.bubbleValue-1];
-    MODIFIERS.bubble.maxValue = UPGRDATA.maxBubbleValue.value[VALUES.upgradeLevel.maxBubbleValue-1];
-    MODIFIERS.bubble.maxBubbleNumber = UPGRDATA.maxBubbleNumber.value[VALUES.upgradeLevel.maxBubbleNumber-1];
-    MODIFIERS.autospawner.time = 1000 - UPGRDATA.autoSpawnRate.value[VALUES.upgradeLevel.autoSpawnRate-1];
-    MODIFIERS.autocollector.time = 2000 - UPGRDATA.autoCollectorRate.value[VALUES.upgradeLevel.autoCollectorRate-1];
+    MODIFIERS.bubble.startingValue = UPGRDATA.bubbleValue.value(VALUES.upgradeLevel.bubbleValue);
+    MODIFIERS.bubble.maxValue = UPGRDATA.maxBubbleValue.value(VALUES.upgradeLevel.maxBubbleValue);
+    MODIFIERS.bubble.maxBubbleNumber = UPGRDATA.maxBubbleNumber.value(VALUES.upgradeLevel.maxBubbleNumber);
+    MODIFIERS.autospawner.time = 1000 - UPGRDATA.autoSpawnRate.value(VALUES.upgradeLevel.autoSpawnRate);
+    MODIFIERS.autocollector.time = 2000 - UPGRDATA.autoCollectorRate.value(VALUES.upgradeLevel.autoCollectorRate);
 }
 
 function updateAchievements() {
