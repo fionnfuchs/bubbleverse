@@ -15,7 +15,7 @@ var UNIVERSE = {
 var UPGRDATA = {
     bubbleValue: {
         cost: function(level) {
-            return 25 * Math.pow(3, level);
+            return 50 * Math.pow(3, level-1);
         },
         value: function(level) {
             return level;
@@ -175,6 +175,14 @@ function updateAchievements() {
     }
     if(STATISTICS.total.collectedBubbles >= 200 && !ACHIEVEMENTS.advancedCollector) {
         ACHIEVEMENTS.advancedCollector = true;
+        $("#achievementsbtn").notify("Achievement Unlocked!", "info");
+    }
+    if(STATISTICS.total.collectedBubbles >= 500 && !ACHIEVEMENTS.professionalCollector) {
+        ACHIEVEMENTS.professionalCollector = true;
+        $("#achievementsbtn").notify("Achievement Unlocked!", "info");
+    }
+    if(STATISTICS.total.collectedBubbles >= 1000 && !ACHIEVEMENTS.masterCollector) {
+        ACHIEVEMENTS.masterCollector = true;
         $("#achievementsbtn").notify("Achievement Unlocked!", "info");
     }
 }

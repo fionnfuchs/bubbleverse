@@ -173,6 +173,8 @@ function updateUI() {
     //$('#spawnbtn').html("<b>Spawn</b><a class='t12'>(" + (MODIFIERS.bubble.maxBubbleNumber - bubbles.length) + ")</a>");
     if(ACHIEVEMENTS.beginnerCollector)$("#ach_beginnerCollector").show();
     if(ACHIEVEMENTS.advancedCollector)$("#ach_advancedCollector").show();
+    if(ACHIEVEMENTS.professionalCollector)$("#ach_professionalCollector").show();
+    if(ACHIEVEMENTS.masterCollector)$("#ach_masterCollector").show();
 
     if(VALUES.prestigeLevel > 0) {
         $("#prestige_controls").hide();
