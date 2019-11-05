@@ -154,9 +154,9 @@ function loadFromCookie() {
 }
 
 function saveToCookie() {
-    $.cookie("VALUES", JSON.stringify(VALUES));
-    $.cookie("STATISTICS", JSON.stringify(STATISTICS));
-    $.cookie("ACHIEVEMENTS", JSON.stringify(ACHIEVEMENTS));
+    $.cookie("VALUES", JSON.stringify(VALUES), {expires: 365});
+    $.cookie("STATISTICS", JSON.stringify(STATISTICS), {expires: 365});
+    $.cookie("ACHIEVEMENTS", JSON.stringify(ACHIEVEMENTS), {expires: 365});
     $("#stat_currency").notify("Autosaved.", "success");
 }
 
