@@ -65,7 +65,7 @@ var UPGRDATA = {
 
 var MODIFIERS = {
     universe: {
-        factor_size: 2, //Values: [1:4]
+        factor_size: 2.5, //Values: [1:4]
     },
     physic: {
         factor_generalSpeed: 1.5,
@@ -140,6 +140,8 @@ function INIT() { // This is called to initialize values when no save file is th
         hugeValue: false,
         incredibleValue: false,
     };
+    MODIFIERS.autocollector.enabled = false;
+    MODIFIERS.autospawner.enabled = false;
 }
 
 function loadFromCookie() {

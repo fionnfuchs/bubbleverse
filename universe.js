@@ -64,6 +64,7 @@ function draw() {
     drawUniverseBorder();
     drawUinversePopulation();
     drawVersionText();
+    drawMaxBubbleSizeText();
 }
 
 function mouseClicked () {
@@ -246,4 +247,13 @@ function drawVersionText() {
     textAlign(LEFT);
     textFont('Courier');
     text("bubbleverse v" + GENERAL.version,0,500);
+}
+
+function drawMaxBubbleSizeText() {
+    fill(250);
+    textSize(12);
+    noStroke();
+    textAlign(CENTER);
+    textFont('Courier');
+    text("Max. bubble size: " + MODIFIERS.bubble.maxValue,256,29);
 }
