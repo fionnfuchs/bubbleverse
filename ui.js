@@ -234,5 +234,5 @@ function updateUI() {
 
 function resetResetState() {
     UISTATE.resetState = 0;
-    $("#resetbtn").html = "HARD RESET";
+    $("#resetbtn").html("<b>HARD RESET</b>");
 }

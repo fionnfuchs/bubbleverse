@@ -125,21 +125,21 @@ function updateBubble(b) {
             let diff = p5.Vector.sub(b2.position,b.position);
             let distance = b.position.dist(b2.position);
             if(distance < calculateAttractionRadius(b2.displaySize) / 2) {
-                diff.normalize();
-                diff.mult(sqrt(b2.size));
-                diff.mult(2);
-                diff.div(distance+1);
-                toMove = p5.Vector.add(toMove, diff);
-
-                push();
-                strokeWeight(1);
-                stroke(240);
-                //line(b.position.x,b.position.y,b2.position.x,b2.position.y); If line upgrade (very expensive)
+                if(b.score < getMaxScore() || b2.score < getMaxScore()) {
+                    diff.normalize();
+                    diff.mult(sqrt(b2.size));
+                    diff.mult(2);
+                    diff.div(distance+1);
+                    toMove = p5.Vector.add(toMove, diff);
+                }
 
                 //Check if overlap
                 if(distance < b.size/2 + 6) {
                     b.score += b2.score;
                     b.score += calculateJoinBonus(b.score);
+                    if(b.score > getMaxScore()) {
+                        b.score = getMaxScore();
+                    }
                     bubbles.splice(i,1);
                 }
             }
@@ -221,6 +221,10 @@ function calculateBubbleValue(score) {
         value = MODIFIERS.bubble.maxValue;
     }
     return Math.round(value);
+}
+
+function getMaxScore () {
+    return MODIFIERS.bubble.maxValue/VALUES.globalMultiplier;
 }
 
 function calculateAttractionRadius(size) {
