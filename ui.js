@@ -1,6 +1,7 @@
 var UISTATE = {
     mainMenuState: 0,
     sidebarMenuState: 0,
+    resetState: 0,
 }
 
 $( document ).ready(function() {
@@ -111,8 +112,16 @@ function initializeButtons () {
         }
     });
     $('#resetbtn').click(function() {
-        clearCookieSave();
-        location.reload();
+        if(UISTATE.resetState < 2) {
+            UISTATE.resetState++;
+            if(UISTATE.resetState > 0) {
+                $("#resetbtn").html("<b>Sure? " + UISTATE.resetState + "/3</b>");
+            }
+            setInterval(resetResetState, 5000);
+        } else {
+            clearCookieSave();
+            location.reload();
+        }
     });
 
     // AUTO ON OFF BUTTONS
@@ -221,4 +230,9 @@ function updateUI() {
     } else {
         $("#upgr_asr_onoff").html("OFF");
     }
+}
+
+function resetResetState() {
+    UISTATE.resetState = 0;
+    $("#resetbtn").html = "HARD RESET";
 }

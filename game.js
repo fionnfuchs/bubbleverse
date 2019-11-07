@@ -156,19 +156,18 @@ function INIT() { // This is called to initialize values when no save file is th
 
 function loadFromCookie() {
     INIT();
-    if($.cookie("VALUES")) {   
-        VALUES = {...VALUES, ...JSON.parse($.cookie("VALUES"))};
-        STATISTICS = {...STATISTICS, ...JSON.parse($.cookie("STATISTICS"))};
-        ACHIEVEMENTS = {...ACHIEVEMENTS, ...JSON.parse($.cookie("ACHIEVEMENTS"))};
+    if(localStorage.getItem('VALUES') !== null) {
+        VALUES = {...VALUES, ...JSON.parse(localStorage.getItem('VALUES'))};
+        STATISTICS = {...STATISTICS, ...JSON.parse(localStorage.getItem('STATISTICS'))};
+        ACHIEVEMENTS = {...ACHIEVEMENTS, ...JSON.parse(localStorage.getItem('ACHIEVEMENTS'))};
     }
-    
     setInterval(saveToCookie, 10000);
 }
 
 function saveToCookie() {
-    $.cookie("VALUES", JSON.stringify(VALUES), {expires: 365});
-    $.cookie("STATISTICS", JSON.stringify(STATISTICS), {expires: 365});
-    $.cookie("ACHIEVEMENTS", JSON.stringify(ACHIEVEMENTS), {expires: 365});
+    localStorage.setItem('VALUES', JSON.stringify(VALUES));
+    localStorage.setItem('STATISTICS', JSON.stringify(VALUES));
+    localStorage.setItem('ACHIEVEMENTS', JSON.stringify(VALUES));
     $("#stat_currency").notify("Autosaved.", "success");
 }
 
@@ -224,16 +223,16 @@ function updateDeltaTimes() {
 }
 
 function clearCookieSave() {
-    $.cookie("VALUES", null);
-    $.cookie("STATISTICS", null);
-    $.cookie("ACHIEVEMENTS", null);
+    localStorage.removeItem('VALUES');
+    localStorage.removeItem('STATISTICS');
+    localStorage.removeItem('ACHIEVEMENTS');
     INIT();
     calculateTempValues();
     saveToCookie();
 }
 
 function prestigeReset() {
-    $.cookie("VALUES", null);
+    localStorage.removeItem('VALUES');
     INIT();
     calculateTempValues();
     saveToCookie();
