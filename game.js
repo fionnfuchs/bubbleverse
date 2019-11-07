@@ -60,6 +60,14 @@ var UPGRDATA = {
         value: function(level) {
             return level * (100/level);
         }
+    },
+    bubblesPerClick: {
+        cost: function(level) {
+            return 1000 * Math.pow(4, level)-2000;
+        },
+        value: function(level) {
+            return level;
+        }
     }
 };
 
@@ -76,6 +84,7 @@ var MODIFIERS = {
         startingValue: UPGRDATA.bubbleValue.value(1),
         maxValue: UPGRDATA.maxBubbleValue.value(1),
         maxBubbleNumber: UPGRDATA.maxBubbleNumber.value(1),
+        bubblesPerClick: UPGRDATA.bubblesPerClick.value(1),
     },
     autospawner: {
         enabled: false,
@@ -115,6 +124,7 @@ function INIT() { // This is called to initialize values when no save file is th
             autoSpawnRate: 1,
             attractionRadius: 1,
             autoCollectorRate: 1,
+            bubblesPerClick: 1,
         },
         prestigeLevel: 0,
         globalMultiplier: 1.0,
@@ -146,7 +156,7 @@ function INIT() { // This is called to initialize values when no save file is th
 
 function loadFromCookie() {
     INIT();
-    if($.cookie("VALUES") != null) {   
+    if($.cookie("VALUES")) {   
         VALUES = {...VALUES, ...JSON.parse($.cookie("VALUES"))};
         STATISTICS = {...STATISTICS, ...JSON.parse($.cookie("STATISTICS"))};
         ACHIEVEMENTS = {...ACHIEVEMENTS, ...JSON.parse($.cookie("ACHIEVEMENTS"))};
@@ -168,6 +178,7 @@ function calculateTempValues() { //Calculate all values except those of VALUES a
     MODIFIERS.bubble.maxBubbleNumber = UPGRDATA.maxBubbleNumber.value(VALUES.upgradeLevel.maxBubbleNumber);
     MODIFIERS.autospawner.time = 1000 - UPGRDATA.autoSpawnRate.value(VALUES.upgradeLevel.autoSpawnRate);
     MODIFIERS.autocollector.time = 2000 - UPGRDATA.autoCollectorRate.value(VALUES.upgradeLevel.autoCollectorRate);
+    MODIFIERS.bubble.bubblesPerClick = UPGRDATA.bubblesPerClick.value(VALUES.upgradeLevel.bubblesPerClick);
 }
 
 function updateAchievements() {
