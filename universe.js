@@ -141,6 +141,7 @@ function updateBubble(b) {
                         b.score = getMaxScore();
                     }
                     bubbles.splice(i,1);
+                    collectMergeBonus();
                 }
             }
         }
@@ -208,9 +209,11 @@ function drawUniverseBorder() {
 }
 
 function calculateBubbleSize(s) {
-    let size = Math.log(0.03*s+1)*(512/4*MODIFIERS.universe.factor_size/4);
-    if(size > (512/4*MODIFIERS.universe.factor_size/4)) {
-        size = 512/4*MODIFIERS.universe.factor_size/4;
+    let maxSize = 50*MODIFIERS.universe.factor_size;
+    let percentage = s/MODIFIERS.bubble.maxValue;
+    let size = percentage*maxSize;
+    if(size < 6) {
+        size = 6;
     }
     return size;
 }
@@ -260,4 +263,9 @@ function drawMaxBubbleSizeText() {
     textAlign(CENTER);
     textFont('Courier');
     text("Max. bubble size: " + MODIFIERS.bubble.maxValue,256,29);
+}
+
+function collectMergeBonus() {
+    VALUES.currency += MODIFIERS.physic.mergeBonus;
+    //Spawn a particle?
 }

@@ -239,3 +239,18 @@ canvas {
     border-style:none none solid solid;
     border-color:white;
 }
+
+.footer {
+    position:absolute;
+    left:0px;
+    top:576px;
+    width:768px;
+    height:16px;
+    background-color:#333333;
+}
+
+.footer_content {
+    color:#DDDDDD;
+    font-size:12px;
+    padding-left:300px;
+}

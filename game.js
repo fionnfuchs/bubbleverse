@@ -15,10 +15,10 @@ var UNIVERSE = {
 var UPGRDATA = {
     bubbleValue: {
         cost: function(level) {
-            return 50 * Math.pow(3, level-1) - 25;
+            return 25 * Math.pow(4, level-1);
         },
         value: function(level) {
-            return level;
+            return level * Math.pow(2, Math.floor(level/4));
         }
     },
     maxBubbleValue: {
@@ -68,6 +68,14 @@ var UPGRDATA = {
         value: function(level) {
             return level;
         }
+    },
+    mergeBonus: {
+        cost: function(level) {
+            return 10000 * Math.pow(2, level);
+        },
+        value: function(level) {
+            return (level-1) * Math.pow(2, level-1);
+        }
     }
 };
 
@@ -78,7 +86,8 @@ var MODIFIERS = {
     physic: {
         factor_generalSpeed: 1.5,
         factor_attractionRadius: 1,
-        base_attractionRadius: 130,
+        base_attractionRadius: 110,
+        mergeBonus: UPGRDATA.mergeBonus.value(1),
     },
     bubble: {
         startingValue: UPGRDATA.bubbleValue.value(1),
@@ -125,6 +134,7 @@ function INIT() { // This is called to initialize values when no save file is th
             attractionRadius: 1,
             autoCollectorRate: 1,
             bubblesPerClick: 1,
+            mergeBonus: 1,
         },
         prestigeLevel: 0,
         globalMultiplier: 1.0,
@@ -178,6 +188,7 @@ function calculateTempValues() { //Calculate all values except those of VALUES a
     MODIFIERS.autospawner.time = 1000 - UPGRDATA.autoSpawnRate.value(VALUES.upgradeLevel.autoSpawnRate);
     MODIFIERS.autocollector.time = 2000 - UPGRDATA.autoCollectorRate.value(VALUES.upgradeLevel.autoCollectorRate);
     MODIFIERS.bubble.bubblesPerClick = UPGRDATA.bubblesPerClick.value(VALUES.upgradeLevel.bubblesPerClick);
+    MODIFIERS.physic.mergeBonus = UPGRDATA.mergeBonus.value(VALUES.upgradeLevel.mergeBonus);
 }
 
 function updateAchievements() {

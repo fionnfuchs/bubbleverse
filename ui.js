@@ -111,6 +111,14 @@ function initializeButtons () {
             calculateTempValues();
         }
     });
+    $('#buy_upgr_mb').click(function () {
+        if(VALUES.currency >= UPGRDATA.mergeBonus.cost(VALUES.upgradeLevel.mergeBonus)) {
+            VALUES.currency -= UPGRDATA.mergeBonus.cost(VALUES.upgradeLevel.mergeBonus);
+            VALUES.upgradeLevel.mergeBonus++;
+            $('#buy_upgr_mb').notify("Bought!", "success");
+            calculateTempValues();
+        }
+    });
     $('#resetbtn').click(function() {
         if(UISTATE.resetState < 2) {
             UISTATE.resetState++;
@@ -175,6 +183,7 @@ function updateUI() {
     $('#stat_upgr_ar_level').html("(" + VALUES.upgradeLevel.attractionRadius + ")");
     $('#stat_upgr_acr_level').html("(" + VALUES.upgradeLevel.autoCollectorRate + ")");
     $('#stat_upgr_bpc_level').html("(" + VALUES.upgradeLevel.bubblesPerClick + ")");
+    $('#stat_upgr_mb_level').html("(" + VALUES.upgradeLevel.mergeBonus + ")");
 
     $('#stat_next_bv').html(Math.round(UPGRDATA.bubbleValue.value(VALUES.upgradeLevel.bubbleValue+1)*VALUES.globalMultiplier));
     $('#stat_next_mbv').html(UPGRDATA.maxBubbleValue.value(VALUES.upgradeLevel.maxBubbleValue+1));
@@ -183,6 +192,7 @@ function updateUI() {
     $('#stat_next_ar').html(UPGRDATA.attractionRadius.value(VALUES.upgradeLevel.attractionRadius+1));
     $('#stat_next_acr').html(UPGRDATA.autoCollectorRate.value(VALUES.upgradeLevel.autoCollectorRate+1));
     $('#stat_next_bpc').html(UPGRDATA.bubblesPerClick.value(VALUES.upgradeLevel.bubblesPerClick+1));
+    $('#stat_next_mb').html(UPGRDATA.mergeBonus.value(VALUES.upgradeLevel.mergeBonus+1));
 
     $('#stat_upgr_bv_cost').html(UPGRDATA.bubbleValue.cost(VALUES.upgradeLevel.bubbleValue) + "$");
     $('#stat_upgr_mbv_cost').html(UPGRDATA.maxBubbleValue.cost(VALUES.upgradeLevel.maxBubbleValue) + "$");
@@ -191,6 +201,7 @@ function updateUI() {
     $('#stat_upgr_ar_cost').html(UPGRDATA.attractionRadius.cost(VALUES.upgradeLevel.attractionRadius) + "$");
     $('#stat_upgr_acr_cost').html(UPGRDATA.autoCollectorRate.cost(VALUES.upgradeLevel.autoCollectorRate) + "$");
     $('#stat_upgr_bpc_cost').html(UPGRDATA.bubblesPerClick.cost(VALUES.upgradeLevel.bubblesPerClick) + "$");
+    $('#stat_upgr_mb_cost').html(UPGRDATA.mergeBonus.cost(VALUES.upgradeLevel.mergeBonus) + "$");
 
     //$('#spawnbtn').html("<b>Spawn</b><a class='t12'>(" + (MODIFIERS.bubble.maxBubbleNumber - bubbles.length) + ")</a>");
     if(ACHIEVEMENTS.beginnerCollector)$("#ach_beginnerCollector").show();
