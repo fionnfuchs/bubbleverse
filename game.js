@@ -5,7 +5,7 @@ var SETTINGS = {
 };
 
 var GENERAL = {
-    version: "0.03"
+    version: "0.04"
 };
 
 var UNIVERSE = {
