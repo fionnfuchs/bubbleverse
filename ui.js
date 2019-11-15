@@ -163,10 +163,11 @@ function initializeButtons () {
 
     // PRESTIGE
     $("#btn_prestige_buy").click(function() {
-        if(VALUES.currency > 20000) {
+        if(VALUES.currency > 20000*Math.pow(3,VALUES.prestigeLevel)) {
+            let lastPrestige = VALUES.prestigeLevel;
             prestigeReset();
-            VALUES.globalMultiplier = 1.5;
-            VALUES.prestigeLevel = 1;
+            VALUES.prestigeLevel = lastPrestige + 1;
+            calculateTempValues();
         }
     });
 }
@@ -209,10 +210,12 @@ function updateUI() {
     if(ACHIEVEMENTS.professionalCollector)$("#ach_professionalCollector").show();
     if(ACHIEVEMENTS.masterCollector)$("#ach_masterCollector").show();
 
-    if(VALUES.prestigeLevel > 0) {
-        $("#prestige_controls").hide();
+    if(VALUES.prestigeLevel > 0) { // Show physic upgrades if prestige level > 0
         $("#sidebar_category_physics_btn").show();
     }
+
+    $("#prestige_price").html(20000*Math.pow(3,VALUES.prestigeLevel) + "$"); // Show prestige price
+    $("#prestige_lvl").html(VALUES.prestigeLevel+1);
 
     if(VALUES.upgradeLevel.autoSpawnRate > 1) {
         $("#upgr_spawn_text").html("Bubbles spawn faster");

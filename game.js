@@ -18,15 +18,15 @@ var UPGRDATA = {
             return 25 * Math.pow(4, level-1);
         },
         value: function(level) {
-            return level * Math.pow(2, Math.floor(level/4));
+            return Math.floor((level * (level-1))/2 + 1);
         }
     },
     maxBubbleValue: {
         cost: function(level) {
-            return 50 * Math.pow(2, level);
+            return Math.floor((level * level * 50 + (25 * Math.pow(4, level-1))) /2);
         },
         value: function(level) {
-            return level * level * 50;
+            return level * (level) * 10 + 50;
         }
     },
     maxBubbleNumber: {
@@ -34,7 +34,7 @@ var UPGRDATA = {
             return 25 * Math.pow(2, level);
         },
         value: function(level) {
-            return 10 + level;
+            return 10 + (level-1)*2;
         },
     },
     autoSpawnRate: {
@@ -171,6 +171,13 @@ function loadFromCookie() {
         STATISTICS = {...STATISTICS, ...JSON.parse(localStorage.getItem('STATISTICS'))};
         ACHIEVEMENTS = {...ACHIEVEMENTS, ...JSON.parse(localStorage.getItem('ACHIEVEMENTS'))};
     }
+    if(!VALUES.upgradeLevel.mergeBonus) {
+        VALUES.upgradeLevel.mergeBonus = 1;
+    }
+    if(VALUES.currency == NaN) {
+        VALUES.currency = 0;
+    }
+    calculateTempValues();
     setInterval(saveToCookie, 10000);
 }
 
@@ -189,6 +196,7 @@ function calculateTempValues() { //Calculate all values except those of VALUES a
     MODIFIERS.autocollector.time = 2000 - UPGRDATA.autoCollectorRate.value(VALUES.upgradeLevel.autoCollectorRate);
     MODIFIERS.bubble.bubblesPerClick = UPGRDATA.bubblesPerClick.value(VALUES.upgradeLevel.bubblesPerClick);
     MODIFIERS.physic.mergeBonus = UPGRDATA.mergeBonus.value(VALUES.upgradeLevel.mergeBonus);
+    VALUES.globalMultiplier = Math.pow(2,VALUES.prestigeLevel);
 }
 
 function updateAchievements() {
@@ -245,6 +253,5 @@ function clearCookieSave() {
 function prestigeReset() {
     localStorage.removeItem('VALUES');
     INIT();
-    calculateTempValues();
     saveToCookie();
 }
