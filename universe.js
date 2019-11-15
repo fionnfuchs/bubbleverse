@@ -235,7 +235,7 @@ function calculateAttractionRadius(size) {
 }
 
 function calculateJoinBonus(score) {
-    return score * 0.05;
+    return score * MODIFIERS.physic.mergeGrowth;
 }
 
 function drawUinversePopulation() {

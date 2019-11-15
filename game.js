@@ -76,6 +76,14 @@ var UPGRDATA = {
         value: function(level) {
             return (level-1) * Math.pow(2, level-1);
         }
+    },
+    mergeGrowth: {
+        cost: function(level) {
+            return 500 * Math.pow(2, level);
+        },
+        value: function(level) {
+            return level-1;
+        }
     }
 };
 
@@ -88,6 +96,7 @@ var MODIFIERS = {
         factor_attractionRadius: 1,
         base_attractionRadius: 110,
         mergeBonus: UPGRDATA.mergeBonus.value(1),
+        mergeGrowth: 0.05,
     },
     bubble: {
         startingValue: UPGRDATA.bubbleValue.value(1),
@@ -135,6 +144,7 @@ function INIT() { // This is called to initialize values when no save file is th
             autoCollectorRate: 1,
             bubblesPerClick: 1,
             mergeBonus: 1,
+            mergeGrowth: 1,
         },
         prestigeLevel: 0,
         globalMultiplier: 1.0,
@@ -174,6 +184,9 @@ function loadFromCookie() {
     if(!VALUES.upgradeLevel.mergeBonus) {
         VALUES.upgradeLevel.mergeBonus = 1;
     }
+    if(!VALUES.upgradeLevel.mergeGrowth) {
+        VALUES.upgradeLevel.mergeGrowth = 1;
+    }
     if(VALUES.currency == NaN) {
         VALUES.currency = 0;
     }
@@ -196,6 +209,7 @@ function calculateTempValues() { //Calculate all values except those of VALUES a
     MODIFIERS.autocollector.time = 2000 - UPGRDATA.autoCollectorRate.value(VALUES.upgradeLevel.autoCollectorRate);
     MODIFIERS.bubble.bubblesPerClick = UPGRDATA.bubblesPerClick.value(VALUES.upgradeLevel.bubblesPerClick);
     MODIFIERS.physic.mergeBonus = UPGRDATA.mergeBonus.value(VALUES.upgradeLevel.mergeBonus);
+    MODIFIERS.physic.mergeGrowth = 0.05 + UPGRDATA.mergeGrowth.value(VALUES.upgradeLevel.mergeGrowth) * 0.05;
     VALUES.globalMultiplier = Math.pow(2,VALUES.prestigeLevel);
 }
 
