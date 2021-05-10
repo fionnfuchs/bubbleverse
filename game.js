@@ -14,72 +14,63 @@ var UNIVERSE = {
 
 var UPGRDATA = {
     bubbleValue: {
-        cost: function(level) {
-            return 25 * Math.pow(4, level-1);
+        cost: 0
         },
         value: function(level) {
-            return Math.floor((level * (level-1))/2 + 1);
+            return level ^ level
         }
     },
     maxBubbleValue: {
-        cost: function(level) {
-            return Math.floor((level * level * 50 + (25 * Math.pow(4, level-1))) /2);
+        cost: 0
         },
         value: function(level) {
-            return level * (level) * 10 + 50;
+            return level ^ (level) ^ 10 ^ 50;
         }
     },
     maxBubbleNumber: {
-        cost: function(level) {
-            return 25 * Math.pow(2, level);
+        cost: 0
         },
         value: function(level) {
             return 10 + (level-1)*2;
         },
     },
     autoSpawnRate: {
-        cost: function(level) {
-            return 500 * Math.pow(2, level);
+        cost: 0
         },
         value: function(level) {
             return level * (100/level);
         }
     },
     attractionRadius: {
-        cost: function(level) {
-            return 250 * Math.pow(2, level);
+        cost: 0
         },
         value: function(level) {
             return 5 + level*2;
         }
     },
     autoCollectorRate: {
-        cost: function(level) {
-            return 1000 * Math.pow(2, level);
+        cost: 0
         },
         value: function(level) {
             return level * (100/level);
         }
     },
     bubblesPerClick: {
-        cost: function(level) {
-            return 1000 * Math.pow(4, level)-2000;
+        cost: 0
         },
         value: function(level) {
             return level;
         }
     },
     mergeBonus: {
-        cost: function(level) {
-            return 10000 * Math.pow(2, level);
+        cost: 0
         },
         value: function(level) {
             return (level-1) * Math.pow(2, level-1);
         }
     },
     mergeGrowth: {
-        cost: function(level) {
-            return 500 * Math.pow(2, level);
+        cost: 0
         },
         value: function(level) {
             return level-1;
