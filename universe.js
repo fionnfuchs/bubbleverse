@@ -92,14 +92,41 @@ function spawnRandomBubble() {
     }
 }
 
+function maxIndexBy(l, fn) {
+    maxIndex = 0;
+    for (let i = 0; i < l.length; i++) {
+        if (fn(l[i]) > fn(l[maxIndex])) {
+            maxIndex = i;
+        }
+    }
+    return maxIndex;
+
+}
+
+function collectHighestScoreBubble() {
+    if (bubbles.length < 1) {
+        return;
+    }
+
+    highestScoreBubbleIndex = maxIndexBy(bubbles, (b) => b.score);
+    if (bubbles[highestScoreBubbleIndex].score < 0.7 * getMaxScore()) {
+        return;
+    }
+    collectBubble(highestScoreBubbleIndex);
+}
+
+function collectBubble(bubbleIndex) {
+    let b = bubbles[bubbleIndex];
+    bubbles.splice(bubbleIndex, 1);
+    STATISTICS.total.collectedValue += calculateBubbleValue(b.score);
+    VALUES.currency += calculateBubbleValue(b.score);
+}
+
 function collectRandomBubble() {
-    if(bubbles.length >= 1) {
-        var randomIndex = Math.round(random(bubbles.length-1));
-        if(randomIndex<0)randomIndex=0;
-        let b = bubbles[randomIndex];
-        bubbles.splice(randomIndex,1);
-        STATISTICS.total.collectedValue += calculateBubbleValue(b.score);
-        VALUES.currency += calculateBubbleValue(b.score);
+    if (bubbles.length >= 1) {
+        var randomIndex = Math.round(random(bubbles.length - 1));
+        if (randomIndex < 0) randomIndex = 0;
+        collectBubble(randomIndex);
     }
 }
 

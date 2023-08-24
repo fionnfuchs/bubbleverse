@@ -239,7 +239,9 @@ function updateDeltaTimes() {
         AUTOSPAWNER.timer += deltaTime;
         if(AUTOSPAWNER.timer > MODIFIERS.autospawner.time) {
             AUTOSPAWNER.timer = 0;
-            spawnRandomBubble();
+            for (let i = 0; i < MODIFIERS.bubble.bubblesPerClick; i++) {
+                spawnRandomBubble();
+            }
         }
     }
 
@@ -248,7 +250,8 @@ function updateDeltaTimes() {
         //console.log(AUTOCOLLECTOR.timer);
         if(AUTOCOLLECTOR.timer > MODIFIERS.autocollector.time) {
             AUTOCOLLECTOR.timer = 0;
-            collectRandomBubble();
+            //collectRandomBubble();
+            collectHighestScoreBubble();
         }
     }
 
